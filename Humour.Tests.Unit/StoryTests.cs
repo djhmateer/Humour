@@ -17,11 +17,11 @@ namespace Humour.Tests.Unit
         }
 
         [TestMethod]
-        public void NewStoryShouldHaveEmptyId2()
+        public void TwoStoriesWithSameIdShouldBeTheSame()
         {
-            var story = new Story();
-            //story.Votes **HERE**
+            var story1 = new Story { Id = 1, Title = "asdf" };
+            var story2 = new Story { Id = 1, Title = "asdf" };
+            (story1 == story2).Should().BeTrue();
         }
-
     }
 }

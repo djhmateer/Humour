@@ -19,5 +19,61 @@
         {
             return Id.Equals(default(T));
         }
+
+        /// <summary>
+        /// Determines whether the specified <see cref="T:System.Object" /> is equal to the current <see cref="T:System.Object" />.
+        /// </summary>
+        /// <returns>
+        /// true if the specified object is equal to the current object; otherwise, false.
+        /// </returns>
+        /// <param name="obj">
+        /// The object to compare with the current object. 
+        /// </param>
+        public override bool Equals(object obj)
+        {
+            if (obj == null || !(obj is DomainEntity<T>))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            var item = (DomainEntity<T>)obj;
+
+            if (item.IsTransient() || IsTransient())
+            {
+                return false;
+            }
+            return item.Id.Equals(Id);
+        }
+
+        /// <summary>
+        /// Compares two instances for equality.
+        /// </summary>
+        /// <param name="left">The left instance to compare.</param>
+        /// <param name="right">The right instance to compare.</param>
+        /// <returns>True when the objects are the same, false otherwise.</returns>
+        public static bool operator ==(DomainEntity<T> left, DomainEntity<T> right)
+        {
+            if (Equals(left, null))
+            {
+                return Equals(right, null);
+            }
+            return left.Equals(right);
+        }
+
+        /// <summary>
+        /// Compares two instances for inequality.
+        /// </summary>
+        /// <param name="left">The left instance to compare.</param>
+        /// <param name="right">The right instance to compare.</param>
+        /// <returns>False when the objects are the same, true otherwise.</returns>
+        public static bool operator !=(DomainEntity<T> left, DomainEntity<T> right)
+        {
+            return !(left == right);
+        }
     }
 }

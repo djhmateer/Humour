@@ -1,4 +1,5 @@
 ﻿using Humour.Infrastructure;
+using Humour.Model.Collections;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -6,6 +7,11 @@ namespace Humour.Model
 {
     public class Story : DomainEntity<int>
     {
+        public Story()
+        {
+            Votes = new Votes();
+        }
+
         [Required]
         public string Title { get; set; }
         public StoryType StoryType { get; set; }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Humour.Model
 {
-    public class Votes : DomainEntity<int>
+    public class Vote : DomainEntity<int>, IHasOwner
     {
         [Required]
         public string IPAddress { get; set; }

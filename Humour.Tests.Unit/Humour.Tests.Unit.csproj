@@ -39,6 +39,7 @@
       <HintPath>..\packages\FluentAssertions.2.2.0.0\lib\net45\FluentAssertions.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
@@ -55,6 +56,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="CollectionBaseTests.cs" />
+    <Compile Include="DomainEntityTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StoryTests.cs" />
   </ItemGroup>
