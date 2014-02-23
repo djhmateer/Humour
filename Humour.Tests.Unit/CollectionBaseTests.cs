@@ -1,11 +1,9 @@
-﻿using Humour.Model.Collections;
+﻿using FluentAssertions;
+using Humour.Model;
+using Humour.Model.Collections;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentAssertions;
 
 namespace Humour.Tests.Unit
 {
@@ -19,47 +17,50 @@ namespace Humour.Tests.Unit
             collection.Count.Should().Be(3);
         }
 
-        //[TestMethod]
-        //public void NewCollectionUsingExistingCollectionAddsValues()
-        //{
-        //    var collection1 = new IntCollection(new List<int> { 1, 2, 3 });
-        //    var collection2 = new IntCollection(collection1);
-        //    collection2.Count.Should().Be(3);
-        //}
+        [TestMethod]
+        public void NewCollectionUsingExistingCollectionAddsValues()
+        {
+            var collection1 = new IntCollection(new List<int> { 1, 2, 3 });
+            var collection2 = new IntCollection(collection1);
+            collection2.Count.Should().Be(3);
+        }
 
-        //[TestMethod]
-        //public void UsingAddRangeAddsValues()
-        //{
-        //    var collection1 = new IntCollection(new List<int> { 1, 2, 3 });
-        //    var collection2 = new IntCollection();
-        //    collection2.AddRange(collection1);
-        //    collection2.Count.Should().Be(3);
-        //}
+        [TestMethod]
+        public void UsingAddRangeAddsValues()
+        {
+            var collection1 = new IntCollection(new List<int> { 1, 2, 3 });
+            var collection2 = new IntCollection();
+            collection2.AddRange(collection1);
+            collection2.Count.Should().Be(3);
+        }
 
-        //[TestMethod]
-        //public void SortPeopleWithSpecifiedComparerSortsCorrectly()
-        //{
-        //    var people = new People();
-        //    people.Add(new Person { FirstName = "John", LastName = "Doe" });
-        //    people.Add(new Person { FirstName = "Imar", LastName = "Spaanjaars" });
-        //    people.Add(new Person { FirstName = "Jane", LastName = "Doe" });
+        [TestMethod]
+        public void SortPeopleWithSpecifiedComparerSortsCorrectly()
+        {
+            var stories = new Stories();
+            stories.Add(new Story { Title = "asdf", Content = "hello" });
+            stories.Add(new Story { Title = "asdf3", Content = "hello" });
+            stories.Add(new Story { Title = "asdf2", Content = "hello" });
+            stories.Add(new Story { Title = "asdf1", Content = "hello" });
+            stories.Add(new Story { Title = "asdf9", Content = "hello" });
 
-        //    people.Sort(new PersonComparer());
+            stories.Sort(new StoryComparer());
 
-        //    people[0].FullName.Should().Be("Imar Spaanjaars");
-        //    people[1].FullName.Should().Be("Jane Doe");
-        //    people[2].FullName.Should().Be("John Doe");
-        //}
+            stories[0].Title.Should().Be("asdf");
+            stories[1].Title.Should().Be("asdf1");
+            stories[2].Title.Should().Be("asdf2");
+            stories[3].Title.Should().Be("asdf3");
+        }
 
-        //[TestMethod]
-        //public void SortIntsSorts()
-        //{
-        //    var ints = new IntCollection { 3, 2, 1 };
-        //    ints.Sort();
-        //    ints[0].Should().Be(1);
-        //    ints[1].Should().Be(2);
-        //    ints[2].Should().Be(3);
-        //}
+        [TestMethod]
+        public void SortIntsSorts()
+        {
+            var ints = new IntCollection { 3, 2, 1 };
+            ints.Sort();
+            ints[0].Should().Be(1);
+            ints[1].Should().Be(2);
+            ints[2].Should().Be(3);
+        }
 
         //[TestMethod]
         //public void AddRangeThrowsWhenCollectionIsNull()
