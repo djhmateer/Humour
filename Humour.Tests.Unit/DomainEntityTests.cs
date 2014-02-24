@@ -14,6 +14,10 @@ namespace Humour.Tests.Unit
     {
         internal class StoryWithIntAsId : DomainEntity<int>
         {
+            public override IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(System.ComponentModel.DataAnnotations.ValidationContext validationContext)
+            {
+                yield break;
+            }
             //public override System.Collections.Generic.IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(System.ComponentModel.DataAnnotations.ValidationContext validationContext)
             //{
             //    throw new NotImplementedException();

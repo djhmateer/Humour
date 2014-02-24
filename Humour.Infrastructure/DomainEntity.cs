@@ -1,10 +1,12 @@
-﻿namespace Humour.Infrastructure
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+namespace Humour.Infrastructure
 {
     /// <summary>
     /// Serves as the base class for all entities in the system.
     /// </summary>
     /// <typeparam name="T">The type of the key for the entity.</typeparam>
-    public abstract class DomainEntity<T>
+    public abstract class DomainEntity<T> : IValidatableObject
     {
         /// <summary>
         /// Gets or sets the unique ID of the entity in the underlying data store.
@@ -74,6 +76,25 @@
         public static bool operator !=(DomainEntity<T> left, DomainEntity<T> right)
         {
             return !(left == right);
+        }
+
+        /// <summary>
+        /// Determines whether this object is valid or not.
+        /// </summary>
+        /// <param name="validationContext">Describes the context in which a validation check is performed.</param>
+        /// <returns>A IEnumerable of ValidationResult. The IEnumerable is empty when the object is in a valid state.</returns>
+        public abstract IEnumerable<ValidationResult> Validate(ValidationContext validationContext);
+
+        /// <summary>
+        /// Determines whether this object is valid or not.
+        /// </summary>
+        /// <returns>A IEnumerable of ValidationResult. The IEnumerable is empty when the object is in a valid state.</returns>
+        public IEnumerable<ValidationResult> Validate()
+        {
+            var validationErrors = new List<ValidationResult>();
+            var ctx = new ValidationContext(this, null, null);
+            Validator.TryValidateObject(this, ctx, validationErrors, true);
+            return validationErrors;
         }
     }
 }

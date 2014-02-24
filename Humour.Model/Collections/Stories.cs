@@ -42,14 +42,14 @@ namespace Humour.Model.Collections
             /// Validates the current collection by validating each individual item in the collection.
             /// </summary>
             /// <returns>A IEnumerable of ValidationResult. The IEnumerable is empty when the object is in a valid state.</returns>
-            //public IEnumerable<ValidationResult> Validate()
-            //{
-            //    var errors = new List<ValidationResult>();
-            //    foreach (var address in this)
-            //    {
-            //        errors.AddRange(address.Validate());
-            //    }
-            //    return errors;
-            //}
+            public IEnumerable<ValidationResult> Validate()
+            {
+                var errors = new List<ValidationResult>();
+                foreach (var story in this)
+                {
+                    errors.AddRange(story.Validate());
+                }
+                return errors;
+            }
         }
     }

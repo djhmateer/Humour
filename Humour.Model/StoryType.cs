@@ -8,6 +8,7 @@ namespace Humour.Model
 {
     public enum StoryType
     {
+        None = 0,
         Joke = 1,
         Video = 2,
         Quote = 3,
