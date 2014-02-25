@@ -38,7 +38,7 @@ namespace Humour.Model
             yield break;
             if (StoryType == StoryType.None)
             {
-                yield return new ValidationResult("Type can't be None.", new[] { "Type" });
+                yield return new ValidationResult("StoryType can't be None.", new[] { "StoryType" });
             }
 
             //if (DateOfBirth < DateTime.Now.AddYears(Constants.MaxAgePerson * -1))
@@ -58,8 +58,8 @@ namespace Humour.Model
             //foreach (var result in EmailAddresses.Validate())
             //{
             //    yield return result;
-            //}
 
+            //}
             //foreach (var result in HomeAddress.Validate())
             //{
             //    yield return result;

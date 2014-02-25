@@ -1,6 +1,7 @@
 ﻿using Humour.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using System.Linq;
 
 namespace Humour.Tests.Unit
 {
@@ -33,12 +34,26 @@ namespace Humour.Tests.Unit
         }
 
         [TestMethod]
-        public void NewVoteShouldHaveDefaultStoryTypeOfJoke()
+        public void NewVoteShouldHaveDefaultStoryTypeOfNone()
         {
             var story = new Story();
-            story.StoryType.Should().Be(StoryType.Joke);
+            story.StoryType.Should().Be(StoryType.None);
         }
 
+        [TestMethod]
+        public void TitleIsRequired()
+        {
+            var story = new Story();
+            var validationResults = story.Validate();
+            validationResults.Count(x => x.MemberNames.Contains("Title")).Should().BeGreaterThan(0);
+        }
 
+        [TestMethod]
+        public void StoryWithTypeStoryTypeNoneIsInvalid()
+        {
+            var story = new Story();
+            story.StoryType = StoryType.None;
+            story.Validate().Count(x => x.MemberNames.Contains("StoryType")).Should().BeGreaterThan(0);
+        }
     }
 }

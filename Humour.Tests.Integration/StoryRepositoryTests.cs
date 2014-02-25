@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Humour.Tests.Integration
 {
     [TestClass]
-    public class StoryRepositoryTests
+    public class StoryRepositoryTests : IntegrationTestBase
     {
         [TestMethod]
         public void CanInstantiateStoryRepository()

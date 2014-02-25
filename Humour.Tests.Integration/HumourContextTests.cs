@@ -1,14 +1,14 @@
-﻿using Humour.Model;
+﻿using FluentAssertions;
+using Humour.Model;
 using Humour.Respository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
-using FluentAssertions;
 
 namespace Humour.Tests.Integration
 {
     [TestClass]
-    public class HumourContextTests
+    public class HumourContextTests : IntegrationTestBase
     {
         [TestMethod]
         public void CanAddStoryUsingContext()
