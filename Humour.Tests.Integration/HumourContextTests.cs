@@ -16,9 +16,9 @@ namespace Humour.Tests.Integration
             var story = new Story
             {
                 Title = "test",
-                Content = "content test",
-                DateCreated = DateTime.Now,
-                DateModified = DateTime.Now
+                Content = "content test"
+                //DateCreated = DateTime.Now,
+                //DateModified = DateTime.Now
             };
 
             var context = new HumourContext();
