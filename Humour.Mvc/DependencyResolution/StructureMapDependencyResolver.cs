@@ -18,7 +18,7 @@
 using System.Web.Http.Dependencies;
 using StructureMap;
 
-namespace Humour.Tests.Mvc.DependencyResolution
+namespace Humour.Mvc.DependencyResolution
 {
     /// <summary>
     /// The structure map dependency resolver.

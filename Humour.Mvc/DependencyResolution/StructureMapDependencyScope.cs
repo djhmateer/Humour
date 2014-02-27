@@ -22,7 +22,7 @@ using System.Web.Http.Dependencies;
 using Microsoft.Practices.ServiceLocation;
 using StructureMap;
 
-namespace Humour.Tests.Mvc.DependencyResolution
+namespace Humour.Mvc.DependencyResolution
 {
     /// <summary>
     /// The structure map dependency scope.

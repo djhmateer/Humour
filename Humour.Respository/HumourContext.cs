@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
-using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
@@ -74,8 +73,6 @@ namespace Humour.Respository
                 throw new Humour.Infrastructure.ModelValidationException(result.ToString(), entityException, allErrors);
             }
         }
-
-
 
         /// <summary>
         /// Configures the EF context.
