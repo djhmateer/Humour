@@ -10,6 +10,12 @@ namespace Humour.Mvc.App_Start
         {
             Mapper.CreateMap<Story, DisplayStory>();
 
+            Mapper.CreateMap<CreateAndEditStory, Story>()
+                    .ForMember(d => d.StoryType, t => t.Ignore())
+                    .ForMember(d => d.DateCreated, t => t.Ignore())
+                    .ForMember(d => d.DateModified, t => t.Ignore())
+                    .ForMember(d => d.Votes, t => t.Ignore());
+
             Mapper.AssertConfigurationIsValid();
         }
     }

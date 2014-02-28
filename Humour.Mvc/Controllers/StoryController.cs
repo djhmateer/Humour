@@ -19,12 +19,13 @@ namespace Humour.Mvc.Controllers
     public class StoryController : Controller
     {
         private readonly IStoryRepository _storyRepository;
-        //private readonly IUnitOfWorkFactory _unitOfWorkFactory;
-        const int PageSize = 10;
+        private readonly IUnitOfWorkFactory _unitOfWorkFactory;
+        const int PageSize = 100;
 
-        public StoryController(IStoryRepository storyRepository)
+        public StoryController(IStoryRepository storyRepository, IUnitOfWorkFactory unitOfWorkFactory)
         {
             _storyRepository = storyRepository;
+            _unitOfWorkFactory = unitOfWorkFactory;
         }
 
         // Constructor based DI
@@ -51,5 +52,50 @@ namespace Humour.Mvc.Controllers
             var model = new PagerModel<DisplayStory> { Data = data, PageNumber = page, PageSize = PageSize, TotalRows = totalRecords };
             return View(model);
         }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(CreateAndEditStory createAndEditStory)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    using (_unitOfWorkFactory.Create())
+                    {
+                        var story = new Story();
+                        Mapper.Map(createAndEditStory, story);
+                        _storyRepository.Add(story);
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (ModelValidationException mvex)
+                {
+                    foreach (var error in mvex.ValidationErrors)
+                    {
+                        ModelState.AddModelError(error.MemberNames.FirstOrDefault() ?? "", error.ErrorMessage);
+                    }
+                }
+            }
+            return View();
+        }
+
+        public ActionResult Edit(int id)
+        {
+            Story story = _storyRepository.FindById(id);
+            if (story == null)
+            {
+                return HttpNotFound();
+            }
+            var data = new CreateAndEditStory();
+            Mapper.Map(story, data);
+            return View(data);
+        }
+
 	}
 }

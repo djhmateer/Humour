@@ -5,6 +5,7 @@ namespace Humour.Mvc.Models.Story
 {
     public class DisplayStory
     {
+        public int Id { get; set; }
         public string Title { get; set; }
         public StoryType StoryType { get; set; }
         public string Content { get; set; }
