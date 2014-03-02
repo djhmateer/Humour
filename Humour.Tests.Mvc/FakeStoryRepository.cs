@@ -4,23 +4,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Humour.Tests.Mvc
 {
-internal class FakeStoryRepository : IStoryRepository
-{
-    public IQueryable<Story> FindAll(params Expression<Func<Story, object>>[] includeProperties)
+    internal class FakeStoryRepository : IStoryRepository
     {
-        var temp = new List<Story>();
-        for (int i = 2; i < 23; i++)
+        public IQueryable<Story> FindAll(params Expression<Func<Story, object>>[] includeProperties)
         {
-            temp.Add(new Story { Title = i.ToString(), Content = i.ToString(), Id = i + 1 });
+            var temp = new List<Story>();
+            for (int i = 2; i < 23; i++)
+            {
+                temp.Add(new Story { Title = i.ToString(), Content = i.ToString(), Id = i + 1 });
+            }
+            temp.Insert(11, new Story { Title = "1 the first title", Content = "a first content", Id = 24 });
+            return temp.AsQueryable();
         }
-        temp.Insert(11, new Story { Title = "1 the first title", Content = "a first content", Id = 24 });
-        return temp.AsQueryable();
-    }
 
         public void Add(Story entity)
         {

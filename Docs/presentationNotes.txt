@@ -1,0 +1,120 @@
+Presentation notes
+	Goal: Entertaining and perhaps show people something they can take away and use.
+	
+	First slide:  Name, github, email, programgood.net.  Based on designs in series: Inmar link  (Book link too)
+				
+	be like pluralsight dude
+		straight into code!
+		
+	Intro: C# developer.. work for an Edinburgh company. 8 developers.  30 Infrastructure.. 
+		   Write line of business apps for companies.  Larger companies now, and larger projects
+		   Problems I encounter:
+				Slow to get to understand project as business logic everywhere 
+					eg codebehind in webforms
+					Stored procs
+				Performance issues
+				No unit tests so hard to change
+	
+	Humour: side project to explore good architecture and design
+		
+	Demo of site... what it does?
+		Show jokes
+			sort by..
+		Edit
+			validation
+		Create
+		Delete
+		Responsive design
+	
+	Show objects diagram (simple)
+		Story
+		StoryType(Enum)
+		Vote
+	
+	VS2013 
+	Naming conventions and directory structure
+	Git integration
+	
+	Unit tests - model
+		Ctrl ,
+	
+		Ctrl R + T
+		Alt E I O A
+		
+		FluentAssertions
+	
+	Integration Tests - repository
+	
+	Mvc Tests
+		as ViewResult
+		
+	4. Building a Model
+		**CanAddStoryUsingContext - easy to grok
+		
+		Entites vs Value Objects
+		
+		Enums - added in EF5 (we're on 6)
+		
+		Equality comparison for Story (in DomainEntity)
+		
+		Collections - Didn't expose List<T> or IQueryable as can't ovverride
+		
+		AutoTrack of DateCreated and DateModified
+		
+		Generic Repo
+		
+		Extensive test for Model
+		
+		****Mapping:
+	
+	5. EF	
+		****HumourContext.. strategy.. use web.config for prod to say disableDatabaseInitialization=true
+								and tests true.
+							how to set live settings for DB
+								is defaulting to SQLEXPRESS
+							
+		
+		UoW - make multiple changes to your data and then submit to the database all at once.
+				so basically don't do a savechanges in my code
+				
+		
+		HumourContextFactory
+		
+		StoryConfiguration - business rules
+		
+		IDateTracking
+	
+	6. MVC
+		Strcturemap - IoC
+		
+		ViewModels - 1 for View and 1 for Create/Edit/Del
+		
+		AutoMapper
+	
+		****Paging and Sorting - DynamicQuery library
+			good test in StoryControllerTests
+			
+			order by date.
+			order by rating..default
+
+	Hosted on Azure
+	
+	Last Slide: same as first
+		summary of tech.. maybe try:  DynamicQuery, StructureMap (IoC), AutoMapper, FluentAssertions
+		
+	
+next:
+	Respository to repository
+	code first migrations test out
+		simplify?
+	
+	simplify.. rip out factory?
+	designs
+	make voting work
+		how to authenticate
+	demo at conferences
+		DDD SW?
+	joke importer?
+		services?
+	
+	

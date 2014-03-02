@@ -1,4 +1,5 @@
 ﻿using Humour.Model;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Humour.Mvc.Models.Story
@@ -12,5 +13,6 @@ namespace Humour.Mvc.Models.Story
         public string VideoURL { get; set; }
         public string ImageURL { get; set; }
         public int Rating { get; set; }
+        public DateTime DateCreated { get; set; }
     }
 }

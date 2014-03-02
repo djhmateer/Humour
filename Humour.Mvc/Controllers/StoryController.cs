@@ -32,7 +32,7 @@ namespace Humour.Mvc.Controllers
         //    _storyRepository = new StoryRepository();
         //}
 
-        public ActionResult Index(int page = 1, string sort = "Id", string sortDir = "ASC")
+        public ActionResult Index(int page = 1, string sort = "Rating", string sortDir = "ASC")
         {
             int totalRecords = _storyRepository.FindAll().Count();
             var data = new List<DisplayStory>();
