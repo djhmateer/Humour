@@ -14,6 +14,7 @@ namespace Humour.Respository
 {
     public class HumourContext : DbContext
     {
+        // Base makes the DB name humour
         public HumourContext() : base("Humour") { }
         public DbSet<Story> Stories { get; set; }
 

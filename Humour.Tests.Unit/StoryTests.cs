@@ -21,7 +21,7 @@ namespace Humour.Tests.Unit
         public void TwoStoriesWithSameIdShouldBeTheSame()
         {
             var story1 = new Story { Id = 1, Title = "asdf" };
-            var story2 = new Story { Id = 1, Title = "asdf" };
+            var story2 = new Story { Id = 1, Title = "asdfasdf" };
             (story1 == story2).Should().BeTrue();
         }
 
