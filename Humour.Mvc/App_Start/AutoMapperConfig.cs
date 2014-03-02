@@ -9,6 +9,7 @@ namespace Humour.Mvc.App_Start
         public static void Start()
         {
             Mapper.CreateMap<Story, DisplayStory>();
+            Mapper.CreateMap<Story, CreateAndEditStory>();
 
             Mapper.CreateMap<CreateAndEditStory, Story>()
                     .ForMember(d => d.StoryType, t => t.Ignore())

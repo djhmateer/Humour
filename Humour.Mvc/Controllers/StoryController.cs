@@ -87,8 +87,40 @@ namespace Humour.Mvc.Controllers
             }
             var data = new CreateAndEditStory();
             Mapper.Map(story, data);
+            //data.Id = story.Id;
+            //data.Title = story.Title;
+            //data.Content = story.Content;
+            //data.VideoURL = story.VideoURL;
+            //data.ImageURL = story.ImageURL;
+            //data.Rating = story.Rating;
+
             return View(data);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(CreateAndEditStory createAndEditStory)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    using (_unitOfWorkFactory.Create())
+                    {
+                        Story storyToUpdate = _storyRepository.FindById(createAndEditStory.Id);
+                        Mapper.Map(createAndEditStory, storyToUpdate, typeof(CreateAndEditStory), typeof(Story));
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (ModelValidationException mvex)
+                {
+                    foreach (var error in mvex.ValidationErrors)
+                    {
+                        ModelState.AddModelError(error.MemberNames.FirstOrDefault() ?? "", error.ErrorMessage);
+                    }
+                }
+            }
+            return View();
+        }
 	}
 }
