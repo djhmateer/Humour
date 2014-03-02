@@ -14,14 +14,9 @@ namespace Humour.Respository
         /// <param name="context">The context to which the new seed data is added.</param>
         protected override void Seed(HumourContext context)
         {
-            var story = new Story
-            {
-                Title = "Banana",
-                StoryType = StoryType.Joke,
-                Content = "asdf",
-            };
-            story.Votes.Add(CreateVote());
-            context.Stories.Add(story);
+            var story1 = new Story { Id = 1, Title = "Banana", Content = "Q: Why did the banana go to the doctors? A: He wasn't peeling very well",Rating = 1 };
+            //story.Votes.Add(CreateVote());
+            context.Stories.Add(story1);
         }
 
         private static Vote CreateVote()
