@@ -34,11 +34,6 @@ namespace Humour.Mvc.Controllers
 
         public ActionResult Index(int page = 1, string sort = "Id", string sortDir = "ASC")
         {
-            // Use LocalDB for Entity Framework by default
-            // Totally need to get rid of this.. why is web config not working.. naming?
-            Database.DefaultConnectionFactory = new SqlConnectionFactory("Data Source=(localdb)\\v11.0; Integrated Security=True; MultipleActiveResultSets=True");
-            HumourContextInitializer.Init(true);
-
             int totalRecords = _storyRepository.FindAll().Count();
             var data = new List<DisplayStory>();
             IQueryable<Story> allStories = _storyRepository.FindAll()

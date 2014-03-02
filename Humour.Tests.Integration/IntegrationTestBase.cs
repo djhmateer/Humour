@@ -8,7 +8,6 @@ namespace Humour.Tests.Integration
     {
         internal IntegrationTestBase()
         {
-            // Use LocalDB for Entity Framework by default
             Database.DefaultConnectionFactory = new SqlConnectionFactory("Data Source=(localdb)\\v11.0; Integrated Security=True; MultipleActiveResultSets=True");
             HumourContextInitializer.Init(true);
         }

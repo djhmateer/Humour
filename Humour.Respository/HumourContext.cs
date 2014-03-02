@@ -16,6 +16,10 @@ namespace Humour.Respository
     {
         // Base makes the DB name humour
         public HumourContext() : base("Humour") { }
+
+        /// <summary>
+        /// Provides access to teh collection of Stories in the system
+        /// </summary>
         public DbSet<Story> Stories { get; set; }
 
         /// <summary>
@@ -82,6 +86,7 @@ namespace Humour.Respository
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new StoryConfiguration());
+            //modelBuilder.Configurations.Add(new VoteConfiguration());
         }
     }
 }

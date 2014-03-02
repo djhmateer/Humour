@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using Humour.Infrastructure;
 using Humour.Model;
 using Humour.Respository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -15,10 +16,8 @@ namespace Humour.Tests.Integration
         {
             var story = new Story
             {
-                Title = "test",
+                Title = "test2",
                 Content = "content test"
-                //DateCreated = DateTime.Now,
-                //DateModified = DateTime.Now
             };
 
             var context = new HumourContext();
@@ -34,9 +33,7 @@ namespace Humour.Tests.Integration
             var story = new Story
             {
                 Title = "test",
-                Content = randomString,
-                DateCreated = DateTime.Now,
-                DateModified = DateTime.Now
+                Content = randomString
             };
 
             context.Stories.Add(story);
@@ -44,6 +41,20 @@ namespace Humour.Tests.Integration
 
             var storyCheck = context.Stories.First(st => st.Content == randomString);
             storyCheck.Should().NotBeNull();
+        }
+
+        [TestMethod]
+        public void ValidationErrorsThrowModelValidationException()
+        {
+            var uow = new EFUnitOfWorkFactory().Create();
+            Action act = () =>
+            {
+                var repo = new StoryRepository();
+                repo.Add(new Story());
+                uow.Commit(true);
+            };
+            act.ShouldThrow<ModelValidationException>().WithMessage("The Title field is required", ComparisonMode.Substring);
+            uow.Undo();
         }
     }
 }
