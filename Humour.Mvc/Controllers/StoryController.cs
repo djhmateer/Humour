@@ -4,10 +4,7 @@ using Humour.Model;
 using Humour.Model.Repositories;
 using Humour.Mvc.Models;
 using Humour.Mvc.Models.Story;
-using Humour.Respository;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Dynamic;
 using System.Web.Mvc;
@@ -41,7 +38,20 @@ namespace Humour.Mvc.Controllers
                     //.Skip((page * PageSize) - PageSize)
                     //.Take(PageSize);
 
-            Mapper.Map(allStories, data);
+            //Mapper.Map(allStories, data);
+            foreach (var story in allStories)
+            {
+                var data1 = new DisplayStory();
+                data1.Id = story.Id;
+                data1.DateCreated = story.DateCreated;
+                data1.Title = story.Title;
+                data1.Content = story.Content;
+                data1.VideoURL = story.VideoURL;
+                data1.ImageURL = story.ImageURL;
+                data1.Rating = story.Rating;    
+                data.Add(data1);
+            }
+
             var model = new PagerModel<DisplayStory> { Data = data, PageNumber = page, PageSize = PageSize, TotalRows = totalRecords };
             return View(model);
         }

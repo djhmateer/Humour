@@ -1,6 +1,7 @@
 ﻿using Humour.Infrastructure;
 using Humour.Model;
 using Humour.Respository.Configuration;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,12 +14,13 @@ using System.Text;
 namespace Humour.Respository
 {
     public class HumourContext : DbContext
+    //public class HumourContext : IdentityDbContext<IdentityUser>
     {
         // Base makes the DB name humour
         public HumourContext() : base("Humour") { }
 
         /// <summary>
-        /// Provides access to teh collection of Stories in the system
+        /// Provides access to the collection of Stories in the system
         /// </summary>
         public DbSet<Story> Stories { get; set; }
 

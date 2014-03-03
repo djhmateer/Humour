@@ -1,3 +1,5 @@
+**here looking at MVC test an PagerModel
+
 Presentation notes
 	Goal: Entertaining and perhaps show people something they can take away and use.
 	

@@ -12,10 +12,11 @@ namespace Humour.Tests.Mvc
     public class StoryControllerTests
     {
         [TestMethod]
-        public void IndexSortsCorrectly()
+        public void Index_GivenDefault_ShouldReturnVMSortedByTitle()
         {
             var controller = new StoryController(new FakeStoryRepository(), null);
             var result = controller.Index(1, "Title", "DESC") as ViewResult;
+            //var model2 = result.Model;
             var model = ((IEnumerable<Story>)result.Model).ToList();
             model.Count().Should().Be(22);
             model.First().Title.Should().Be("1 the first title");
