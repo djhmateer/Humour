@@ -52,7 +52,11 @@ namespace Humour.Respository
                     {
                         if (item.State == EntityState.Added)
                         {
-                            changedOrAddedItem.DateCreated = DateTime.Now;
+                            // For demo so can add in stories with DateCreated in the past
+                            if (changedOrAddedItem.DateCreated == DateTime.MinValue)
+                            {
+                                changedOrAddedItem.DateCreated = DateTime.Now;
+                            }
                         }
                         changedOrAddedItem.DateModified = DateTime.Now;
                     }

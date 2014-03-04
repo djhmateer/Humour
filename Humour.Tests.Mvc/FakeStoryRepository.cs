@@ -14,9 +14,9 @@ namespace Humour.Tests.Mvc
             var temp = new List<Story>();
             for (int i = 2; i < 23; i++)
             {
-                temp.Add(new Story { Title = i.ToString(), Content = i.ToString(), Id = i + 1 });
+                temp.Add(new Story { Title = i.ToString(), Content = i.ToString(), Id = i + 1, Rating = i, DateCreated = DateTime.Now, DateModified=DateTime.Now, StoryType = StoryType.Joke });
             }
-            temp.Insert(11, new Story { Title = "1 the first title", Content = "a first content", Id = 24 });
+            temp.Insert(11, new Story { Title = "1 the first title", Content = "a first content", Id = 24, Rating=44, DateCreated = DateTime.Now, DateModified=DateTime.Now, StoryType = StoryType.Joke });
             return temp.AsQueryable();
         }
 

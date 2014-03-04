@@ -23,20 +23,14 @@ namespace Humour.Mvc.Controllers
             _unitOfWorkFactory = unitOfWorkFactory;
         }
 
-        // Constructor based DI
-        //public StoryController()
-        //{
-        //    _storyRepository = new StoryRepository();
-        //}
-
-        public ActionResult Index(int page = 1, string sort = "Rating", string sortDir = "ASC")
+        public ActionResult Index(int page = 1, string sort = "Rating", string sortDir = "DESC")
         {
             int totalRecords = _storyRepository.FindAll().Count();
             var data = new List<DisplayStory>();
+
+            // Using DynamicQuery to order by a string
             IQueryable<Story> allStories = _storyRepository.FindAll()
                     .OrderBy(string.Format("{0} {1}", sort, sortDir));
-                    //.Skip((page * PageSize) - PageSize)
-                    //.Take(PageSize);
 
             //Mapper.Map(allStories, data);
             foreach (var story in allStories)
@@ -48,7 +42,7 @@ namespace Humour.Mvc.Controllers
                 data1.Content = story.Content;
                 data1.VideoURL = story.VideoURL;
                 data1.ImageURL = story.ImageURL;
-                data1.Rating = story.Rating;    
+                data1.Rating = story.Rating;
                 data.Add(data1);
             }
 
