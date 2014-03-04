@@ -1,9 +1,22 @@
-**here looking at MVC test an PagerModel
+Sorting be able to flip around
+
+1) DynamicQuery
+2) _CreateOrEdit
+3) FluentAssertions and Fake
+3) Mapper 
+
+when fake:
+allStories	{System.Collections.Generic.List`1[Humour.Model.Story].OrderBy(Param_0 => Param_0.Title)}	System.Linq.IQueryable<Humour.Model.Story> {System.Linq.EnumerableQuery<Humour.Model.Story>}
+
+real:
+System.Linq.IQueryable<Humour.Model.Story> {System.Data.Entity.Infrastructure.DbQuery<Humour.Model.Story>}
+
 
 Presentation notes
 	Goal: Entertaining and perhaps show people something they can take away and use.
 	
 	First slide:  Name, github, email, programgood.net.  Based on designs in series: Inmar link  (Book link too)
+			**funny picture / joke?
 				
 	be like pluralsight dude
 		straight into code!
@@ -19,11 +32,14 @@ Presentation notes
 	
 	Humour: side project to explore good architecture and design
 		
+-------------
 	Demo of site... what it does?
 		Show jokes
 			sort by..
+			1)
+
 		Edit
-			validation
+			2)
 		Create
 		Delete
 		Responsive design
@@ -102,10 +118,6 @@ Presentation notes
 			order by rating..default
 
 	Hosted on Azure
-	
-	Last Slide: same as first
-		summary of tech.. maybe try:  DynamicQuery, StructureMap (IoC), AutoMapper, FluentAssertions
-		
 	
 next:
 	Respository to repository
